@@ -1,10 +1,25 @@
 import { Injectable } from '@nestjs/common';
+import { users } from '@prisma/client';
+import { PrismaService } from '../prisma.service';
 import { UpdateUserDTO } from './dto/updateUser.dto';
 
 @Injectable()
 export class UsersService {
-  async create(): Promise<string> {
-    return 'Usuário criado com sucesso!';
+  constructor(private prisma: PrismaService) {}
+
+  async create(data): Promise<users> {
+    const { name, email, password } = data;
+    const user = await this.prisma.users.create({
+      data: {
+        name,
+        email,
+        password,
+      },
+    });
+    if (!user) {
+      throw new Error('Erro ao criar usuário!');
+    }
+    return user;
   }
 
   async findAll(): Promise<string> {
@@ -17,5 +32,9 @@ export class UsersService {
 
   async update(id: number, req: UpdateUserDTO): Promise<string> {
     return `Usuário ${id} atualizado com sucesso!`;
+  }
+
+  async remove(id: number): Promise<string> {
+    return `Usuário ${id} deletado com sucesso!`;
   }
 }

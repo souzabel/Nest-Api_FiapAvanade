@@ -23,3 +23,4 @@ export class AuthController {
 //SE TUDO DER CERTO, O RETORNO É SEMPRE 200//CADASTRO QUE GERA 201
 //o post login pega o localhost:3000/auth/login
 //e o body pega o login e a senha
+
