@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { users } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
 import { UpdateUserDTO } from './dto/updateUser.dto';
@@ -17,8 +17,15 @@ export class UsersService {
       },
     });
     if (!user) {
-      throw new Error('Erro ao criar usuário!');
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          message: 'Erro ao criar usuário!',
+        },
+        HttpStatus.FORBIDDEN,
+      );
     }
+
     return user;
   }
 
