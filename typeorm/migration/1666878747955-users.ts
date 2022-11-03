@@ -3,17 +3,17 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 import { idColumn } from "../utils/idColum";
 import { varcharColumn } from "../utils/varcharColumn";
 
-export class users1666878747955 implements MigrationInterface {
+export class users1666878641877 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
         name: 'users',
         columns: [
-        idColumn('id'),
-        varcharColumn('name','100',false),
-        varcharColumn('email','255',false, true),
-        varcharColumn('password','64',false),
-       ],
+          idColumn('id'),
+          varcharColumn('name', '100', false),
+          varcharColumn('email', '255', false, true),
+          varcharColumn('password', '64', false),
+        ],
       }),
     );
   }

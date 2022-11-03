@@ -4,7 +4,6 @@ import * as nodemailer from 'nodemailer';
 
 @Injectable()
 export class EmailService {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async sendEmail(to: string, subject: string, msg: string, options: object) {
     const clientID = process.env.CLIENT_ID;
     const secretKey = process.env.SECRET_KEY;
